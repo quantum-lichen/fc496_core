@@ -1,71 +1,35 @@
-BCP / FC-496 / HSE — Whitepaper (résumé exécutif + spec initiale)
-Version: 1.0 (snapshot préparatoire)
-Auteur: Bryan Ouellette (quantum-lichen)
+# FC-496 / HSE — Hybrid Strand Engine (implémentation initiale)
 
-Résumé
---------
-BCP (Bryan Cognitive Protocol) propose une architecture cognitive et un format de donnée fondamental : la "Cellule Fractale 496 bits" (FC-496).
-FC-496 encode contexte spatial (géométrie fractale), temporel (pi-index), schéma et payload optimisé IA.
-HSE (Hybrid Strand Engine) est l'index spatio-temporel O(1) qui orchestre les cellules (FGPI keys).
+Projet : FC-496 (Cellule Fractale 496 bits) + HSE (Hybrid Strand Engine)
+Auteur : Bryan Ouellette (quantum-lichen) — prototype et documentation initiale
 
-Principes clefs
----------------
-- 496 (nombre parfait) -> taille de la cellule (496 bits)
-- φ (phi, nombre d'or) -> partition header/payload et distribution fractale
-- π (pi) -> index temporel universel (pi-index)
-- Résonance Fibonacci -> découverte de relations émergentes (StrandGraph)
-- CRAID -> mécanismes de résilience / ECC intégrée
+But
+- Rendre consultable et exécutables les artefacts fondamentaux de l'architecture FC-496 / HSE.
+- Fournir un prototype Rust minimal (fc496_rust) et la documentation technique (whitepaper, architecture).
+- Donner une base pour monter la Phase 3 (performance, ECC avancée, portage Rust complet).
 
-FC-496 : layout (spec initiale)
-------------------------------
-Total: 496 bits = Header (190 bits) + Payload (306 bits)
+Contenu du dépôt (proposé)
+- docs/whitepaper_BCP.md        — Whitepaper résumé + plan d'implémentation
+- docs/architecture.md          — Diagrammes et spécifications techniques
+- fc496_rust/                   — Prototype Rust minimal (lib skeleton)
+  - Cargo.toml
+  - src/lib.rs
+  - src/ecc.rs
+  - src/geo.rs
+  - src/time.rs
+  - src/utils.rs
+- .github/workflows/ci.yml      — CI (build, test, bench)
+- scripts/archive_project.py    — Archivage reproducible
+- README.md                     — Ce fichier
 
-Header (190b):
-- magic (16 bits)
-- version (8 bits)
-- flags (8 bits)
-- pi_index (32 bits)
-- geo_path (16 bits)
-- geo_seed (64 bits)
-- schema_id (24 bits)
-- ecc_meta (22 bits)
+Usage rapide
+1. Colle les fichiers fournis (ci‑dessous) dans l'arborescence de ton repo local.
+2. Exécute les commandes git (voir la section "Commandes git" en bas) pour commit et push vers github.com/quantum-lichen/fc496_core sur la branche main.
+3. Après push : la CI (workflow GitHub Actions) construira le prototype Rust.
 
-Payload (306b):
-- content_id (32 bits)
-- type_idx (16 bits)
-- data / seed descriptor (258 bits)
-
-HSE (Hybrid Strand Engine)
---------------------------
-- Index principal: FGPI_key = (geo_path, pi_index, schema_id)
-- Registry: mapping FGPI_key -> {content_id: cell}
-- Requêtes spatio-temporelles en O(1) via bitmasking geo_path + fenêtre pi_index
-
-CRAID & ECC
------------
-- Partition initiale ECC 248/124/124 (prototype simple)
-- Roadmap: BCH(31,16) puis Reed-Solomon pour correction multi-bit en production
-
-Sécurité et immutabilité
------------------------
-- Intégrité portée par la structure (symétrie 496, résonance phi-bond).
-- Corruption détectée via ECC & perte de résonance (isolement dans StrandGraph).
-- Pi-index ancre temporellement la cellule.
-
-Prototype & Roadmap
--------------------
-Phase 1 (prototype) : Rust skeleton + tests 10k cells (validation)
-Phase 2 : ECC avancé, scaling 1M cells, benchmark
-Phase 3 : intégrations IA (LangChain/LlamaIndex), publication, standardisation
-
-Annexes & resources
---------------------
-- Diagrammes et design : docs/architecture.md
-- Prototype Rust : fc496_rust/
-- Scripts tests/benchmarks : tests/benchmarks
-- (Optionnel) import brut de notes/Implementation.txt dans docs/raw/Implementation.txt — me dire si tu veux que j'ajoute tout le contenu brut.
+Remarques
+- Les fichiers Rust fournis sont des squelettes fonctionnels : compilation possible et tests unitaires de base inclus.
+- Whitepaper : résumé organisé en Markdown. Si tu veux, j'ajoute aussi le fichier Implementation.txt brut sous docs/raw/.
 
 Contact
--------
-Bryan Ouellette — quantum-lichen
-Pour push / publication : indique moi la branche cible et j'effectue le push.
+- Si tu veux que je prépare un script shell pour créer tous ces fichiers automatiquement et pousser le commit, dis "fais le script" et je te l’enverrai.
