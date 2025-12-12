@@ -69,5 +69,5 @@ Annexes & ressources
 Contact
 -------
 Bryan Ouellette — quantum-lichen
-Pour push / publication : indique moi la branche cible et j'effectue le push.
+lmc.theory@gmail.com
 ```
