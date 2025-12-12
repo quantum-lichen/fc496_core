@@ -23,10 +23,13 @@ Contenu du dépôt (proposé)
 - README.md                     — Ce fichier
 
 Usage rapide
-1. Valide ici les fichiers / demande modifications.
-2. Dis "push to quantum-lichen/UICT-CEML-H-Scale branch bcp/initial-implementation" (ou autre branche) et je pousse.
-3. Après push : je lance CI et un benchmark de smoke-test.
+1. Colle les fichiers fournis (ci‑dessous) dans l'arborescence de ton repo local.
+2. Exécute les commandes git (voir la section "Commandes git" en bas) pour commit et push vers github.com/quantum-lichen/fc496_core sur la branche main.
+3. Après push : la CI (workflow GitHub Actions) construira le prototype Rust.
 
 Remarques
 - Les fichiers Rust fournis sont des squelettes fonctionnels : compilation possible et tests unitaires de base inclus.
-- Whitepaper : résumé organisé en Markdown. On peut y intégrer la totalité du contenu long brut si tu veux (je peux importer ton fichier Implementation.txt complet dans docs/raw/).
+- Whitepaper : résumé organisé en Markdown. Si tu veux, j'ajoute aussi le fichier Implementation.txt brut sous docs/raw/.
+
+Contact
+lmc.theory@gmail.com
